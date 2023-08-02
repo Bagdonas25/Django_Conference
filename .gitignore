@@ -2,3 +2,4 @@
 conference_app/db.sqlite3
 venv
 .env
+*.pyc
