@@ -12,6 +12,33 @@
 
 
   <a href="/events/register/{{ object.id }}">Uzsiregistruoti</a>
-  <a href="{% url "register-visitor" object.id %}">Uzsiregistruoti</a>
+  <a href="{% url 'register-visitor' object.id %}">Uzsiregistruoti</a>
+
+  <br>
+  {% if messages %}
+    {% for msg in messages %}
+      <div>{{ msg }}</div>
+    {% endfor %}
+  {% endif %}
+  <br>
+
+  <form action="{% url 'event_detail' object.id %}" method="post">
+    {% csrf_token %}
+    <div>
+      <label>Imones pavadinimas:</label>
+      <input type="text" name="imones_pavadinimas">
+    </div>
+
+    <div>
+      <label>Zmoniu skaicius:</label>
+      <input type="number" name="zmoniu_skaicius">
+    </div>
+
+    <div>
+      <label>Pastabos:</label>
+      <textarea name="pastabos"></textarea>
+    </div>
+    <input type="submit" value="Registruotis">
+  </form>
 
 {% endblock %}

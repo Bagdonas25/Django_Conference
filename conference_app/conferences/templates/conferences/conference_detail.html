@@ -27,4 +27,26 @@
         {% endfor %}
     </ol>
 
+    <h2>Komentarai:</h2>
+    {% if user.is_authenticated %}
+
+        {% if messages %}
+            {% for message in messages %}
+                 <div>
+                    {{ zinute }}
+                 </div>
+            {% endfor %}
+        {% endif %}
+
+    <form action="{% url 'create-comment' object.id %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label>Komentaras:</label>
+            <textarea name="komentaras"></textarea>
+        </div>
+        <input type="submit" value="Rasyti komentara">
+    </form>
+    {% else %}
+Norint komentuoti reikia <a href="{% url 'login' %}">prisijungti</a>.
+    {% endif %}
 {% endblock %}
